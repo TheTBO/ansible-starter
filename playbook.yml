@@ -1,0 +1,49 @@
+---
+- name: Learn how to play
+  hosts: localhost
+
+  tasks:
+    # https://docs.ansible.com/ansible/latest/collections/ansible/builtin/package_module.html#ansible-collections-ansible-builtin-package-module
+    - name: install bash
+      ansible.builtin.package:
+        name: bash
+        state: present
+
+    - name: install curl
+      ansible.builtin.package:
+        name: curl
+        state: present
+
+    - name: install git
+      ansible.builtin.package:
+        name: git
+        state: present
+
+    - name: install node
+      ansible.builtin.package:
+        name:
+          - nodejs
+          - npm
+        state: present
+
+    - name: install php83 and composer
+      ansible.builtin.package:
+        name:
+          - php83
+          - composer
+        state: present
+
+    - name: install neovim
+      ansible.builtin.package:
+        name: neovim
+        state: present
+
+    # https://docs.ansible.com/ansible/latest/collections/ansible/builtin/git_module.html#ansible-collections-ansible-builtin-git-module
+    - name: install astronvim
+      ansible.builtin.git:
+        repo: https://github.com/AstroNvim/AstroNvim
+        depth: 1
+        dest: ~/.config/nvim
+
+    # - name: install nerdfonts jetbrains
+    #   ansible.builtin.unarchive: https://github.com/ryanoasis/nerd-fonts/releases/latest/download/JetBrainsMono.tar.xz
